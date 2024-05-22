@@ -12,11 +12,12 @@
   "authors": [
     {
       "name": "jauhar-imtikhan",
-      "email": "bangjoe.muns@gmail.com"
+      "email": "jauhar.imtikhan@gmail.com"
     }
   ],
   "minimum-stability": "alpha",
   "require": {
+    "php": "8.1",
     "vlucas/phpdotenv": "^5.6"
   }
 }
