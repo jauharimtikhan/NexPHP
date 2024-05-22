@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+
+require_once 'System/Command/Command.php';
+require_once 'System/Command/Console.php';
+require_once 'System/Command/CoreCommand.php';
+require_once 'System/Command/ServeCommand.php';
+require_once 'System/Command/ModelCommand.php';
+
+use System\Command\Console;
+
+$console = new Console();
+$console->run($argv);
+?>

@@ -2,12 +2,19 @@
 
 namespace App\Controller;
 
+use App\Helpers\Date;
 use App\Models\HomeModel;
 use System\Controller;
 use System\FormValidation\Validator;
 
 class HomeController extends Controller
 {
+    private $helper;
+
+    public function __construct()
+    {
+    }
+
     public function index()
     {
         $name = $this->input('name');
@@ -40,7 +47,8 @@ class HomeController extends Controller
 
         $data = [
             'nama' => 'jauhar-imtikhan',
-            'products' => $products
+            'products' => $products,
+            'tahun' => $this->helper->getYear()
         ];
         $this->view('Home', $data);
     }
