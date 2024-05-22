@@ -1,0 +1,22 @@
+{
+  "name": "nex-php/framework",
+  "description": "NexPHP is light php framework",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "System\\": "System/",
+      "App\\": "App/"
+    }
+  },
+  "authors": [
+    {
+      "name": "jauhar-imtikhan",
+      "email": "bangjoe.muns@gmail.com"
+    }
+  ],
+  "minimum-stability": "alpha",
+  "require": {
+    "vlucas/phpdotenv": "^5.6"
+  }
+}
