@@ -2,10 +2,9 @@
 
 namespace System;
 
-class Controller
+abstract class Controller
 {
     protected $variables = [];
-
 
     public function view(string $views, array $data = [])
     {
@@ -41,5 +40,12 @@ class Controller
     {
 
         return  htmlspecialchars($_POST[$name]) ??  htmlspecialchars($_GET[$name]) ?? null;
+    }
+
+    public function load($type, $class)
+    {
+
+        $loader = new Loader();
+        $loader->load($type, $class);
     }
 }

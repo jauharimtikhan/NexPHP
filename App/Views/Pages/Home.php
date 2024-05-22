@@ -16,7 +16,7 @@
 </form>
 <pre>
 <?php
-
+echo $tahun;
 ?>
 
 </pre>
