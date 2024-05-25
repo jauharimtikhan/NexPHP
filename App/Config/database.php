@@ -1,5 +1,4 @@
 <?php
-
 return [
     'database' => [
         'driver' => $_ENV['DB_DRIVER'] ? $_ENV['DB_DRIVER'] : 'mysql', // or 'sqlite'

@@ -6,7 +6,7 @@ class Validator
 {
     private $data;
     private $rules;
-    private $errors = [];
+    private array $errors = [];
 
     public function __construct(array $data, array $rules)
     {
@@ -16,6 +16,7 @@ class Validator
 
     public function validate()
     {
+
         foreach ($this->rules as $field => $rules) {
             $rules = explode('|', $rules);
             foreach ($rules as $rule) {
@@ -27,7 +28,9 @@ class Validator
                 }
                 $method = "validate" . ucfirst($ruleName);
                 if (method_exists($this, $method)) {
-                    $this->$method($field, ...$parameters);
+                    if (count($rules) >= 1) {
+                        $this->$method($field, ...$parameters);
+                    }
                 }
             }
         }
@@ -36,7 +39,14 @@ class Validator
 
     public function errors()
     {
-        return $this->errors;
+        $errors = $this->errors;
+        if (is_array($errors)) {
+            save_old_input($this->data);
+            return  $errors;
+        } else {
+            clear_old_input();
+            return [];
+        }
     }
 
     private function validateRequired($field)
@@ -48,6 +58,7 @@ class Validator
 
     private function addError($field, $message)
     {
+
         $this->errors[$field][] = $message;
     }
 

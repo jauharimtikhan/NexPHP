@@ -76,6 +76,10 @@ class Session
         }
         return $default;
     }
+    public function hasFlash($key)
+    {
+        return isset($_SESSION['flash'][$key]);
+    }
 
     private function removeFlashData()
     {
@@ -92,5 +96,21 @@ class Session
                 $_SESSION['flash_new'][$key] = false;
             }
         }
+    }
+
+    public  function set_old($data)
+    {
+        $_SESSION['old_input'] = $data;
+        $_SESSION['old_input_new'] = true;
+    }
+
+    public function getOld($key, $default = NULL)
+    {
+
+        if (isset($_SESSION['old_input'][$key])) {
+
+            return htmlspecialchars($_SESSION['old_input'][$key], ENT_QUOTES, 'UTF-8');
+        }
+        return $default;
     }
 }

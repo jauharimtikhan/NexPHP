@@ -10,6 +10,7 @@ class Database
 {
     private $dbh;
     private $stmt;
+    private bool $debug = true;
 
     public function __construct()
     {

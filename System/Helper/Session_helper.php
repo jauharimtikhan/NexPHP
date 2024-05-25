@@ -42,3 +42,31 @@ function session_get_flash($key, $default = null)
     global $session;
     return $session->getFlash($key, $default);
 }
+
+function session_set_validation(array $value)
+{
+    global $session;
+    $session->flash('errors', $value);
+}
+
+function session_has_validation($key)
+{
+    global $session;
+    return $session->hasFlash($key);
+}
+
+function old($key, $default = '')
+{
+    return session()->getOld($key, $default);
+}
+
+function clear_old_input()
+{
+    unset($_SESSION['old_input']);
+}
+
+function save_old_input($data)
+{
+    global $session;
+    $session->set_old($data);
+}

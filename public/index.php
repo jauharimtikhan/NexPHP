@@ -1,10 +1,16 @@
 <?php
 require dirname(__DIR__) . '/vendor/autoload.php';
-require dirname(__DIR__) . '/System/Helper/Session_helper.php';
+require dirname(__DIR__) . '/System/Helper/Validation_helper.php';
+include dirname(__DIR__) . '/System/Helper/Session_helper.php';
+require dirname(__DIR__) . '/System/Helper/Url.php';
+
 
 use System\Application;
 use System\Session\Session;
 
+$config = require dirname(__DIR__) . '/App/Config/session.php';
+
+$session = new Session($config);
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 define('ENVIRONMENT', isset($_SERVER['APP_ENV']) ? $_SERVER['APP_ENV'] : getenv('APP_ENV'));
@@ -33,9 +39,7 @@ switch (ENVIRONMENT) {
 }
 
 
-$config = require dirname(__DIR__) . '/App/Config/session.php';
-$session = new Session($config);
-$app = new Application(dirname(__DIR__));
 
+$app = new Application(dirname(__DIR__));
 include  dirname(__DIR__) . '/App/routes/Route.php';
 $app->run();
