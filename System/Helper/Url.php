@@ -3,7 +3,12 @@
 function baseurl($path = null)
 {
 
-    return rtrim($_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/" . $path, "/");
+    $httpHost = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
+    $urlParts = parse_url($httpHost);
+    $httpProtocol = isset($urlParts['scheme']) ? $urlParts['scheme'] : 'http';
+    $host = $httpProtocol . "://" . $_SERVER['HTTP_HOST'] . "/" . $path;
+
+    return $host;
 }
 
 function asset($path = null)
@@ -14,8 +19,6 @@ function asset($path = null)
 
 function redirect($path = null)
 {
-
-    header("Location: " . baseurl($path));
-
+    header("Location: " . $path);
     exit;
 }

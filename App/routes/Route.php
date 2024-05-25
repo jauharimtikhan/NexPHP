@@ -1,6 +1,6 @@
 <?php
 
-use App\Controller\HomeController;
+use App\Controller\WelcomeController;
 use System\Application;
 
 /**
@@ -11,5 +11,4 @@ use System\Application;
  */
 
 
-$app->router->get('/', [HomeController::class, 'show']);
-$app->router->post('/', [HomeController::class, 'index']);
+$app->router->get('/', [WelcomeController::class, 'index']);
